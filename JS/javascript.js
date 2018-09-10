@@ -21,6 +21,19 @@ new Vue({
         specialAttack: function() {
             this.myHP -= this.randomNum(10);
             this.monsterHP -= this.randomNum(20);
+        },
+        heal: function() {
+            this.myHP += this.randomNum(10);
+            this.myHP += this.randomNum(10);
+        }
+    },
+    watch: {
+        myHP: function() {
+            if (this.myHP > 100) {
+                this.myHP = 100;
+            } else if (this.myHP < 0) {
+                this.myHP = 0;
+            }
         }
     }
 });
