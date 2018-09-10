@@ -12,25 +12,31 @@
                 <div class="small-6 columns">
                     <h1 class="text-center">YOU</h1>
                     <div class="healthbar">
-                        <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                        <div 
+                            :style="{width: myHP + '%'}" 
+                            class="healthbar text-center" 
+                            style="background-color: green; margin: 0; color: white;">
                         </div>
                     </div>
                 </div>
                 <div class="small-6 columns">
                     <h1 class="text-center">MONSTER</h1>
                     <div class="healthbar">
-                        <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                        <div 
+                            :style="{width: monsterHP + '%'}" 
+                            class="healthbar text-center" 
+                            style="background-color: green; margin: 0; color: white;">
 
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="row controls">
+            <section class="row controls" v-if="!isStart">
                 <div class="small-12 columns">
-                    <button id="start-game">START NEW GAME</button>
+                    <button id="start-game" @click="resetGame()">START NEW GAME</button>
                 </div>
             </section>
-            <section class="row controls">
+            <section class="row controls" v-if="isStart">
                 <div class="small-12 columns">
                     <button id="attack">ATTACK</button>
                     <button id="special-attack">SPECIAL ATTACK</button>
