@@ -2,8 +2,8 @@ new Vue({
     el: '#app',
     data: {
         isStart: false,
-        myHP: 50,
-        monsterHP: 0,
+        myHP: 100,
+        monsterHP: 100,
         log: []
     },
     methods: {
@@ -53,6 +53,18 @@ new Vue({
             this.myHP = 100;
             this.monsterHP = 100;
             this.log = [];
+        },
+        gameFinish: function() {
+            if (this.myHp === 0) {
+                if(confirm('You lose! New Game')) {
+                    this.resetGame();
+                };
+            } else if(this.monsterHP === 0) {
+                if(confirm('You win! New game?')) {
+                    this.resetGame();
+                };
+            }
+            
         }
     },
     watch: {
@@ -61,6 +73,17 @@ new Vue({
                 this.myHP = 100;
             } else if (this.myHP < 0) {
                 this.myHP = 0;
+                // alert('You lose! New game?');
+                this.gameFinish();
+            }
+        },
+        monsterHP: function() {
+            if (this.monsterHP > 100) {
+                this.monsterHP = 100;
+            } else if (this.monsterHP < 0) {
+                this.monsterHP = 0;
+                // alert('You win! New game?');
+                this.gameFinish();
             }
         }
     }
