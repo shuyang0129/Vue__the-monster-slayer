@@ -2,7 +2,7 @@ new Vue({
     el: '#app',
     data: {
         isStart: false,
-        myHP: 0,
+        myHP: 50,
         monsterHP: 0
     },
     methods: {
