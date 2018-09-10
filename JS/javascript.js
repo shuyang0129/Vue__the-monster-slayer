@@ -17,6 +17,10 @@ new Vue({
         attack: function() {
             this.myHP -= this.randomNum(10);
             this.monsterHP -= this.randomNum(10);
+        },
+        specialAttack: function() {
+            this.myHP -= this.randomNum(10);
+            this.monsterHP -= this.randomNum(20);
         }
     }
 });
