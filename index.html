@@ -42,15 +42,17 @@
                     <button id="attack" @click="attack()">ATTACK</button>
                     <button id="special-attack" @click="specialAttack()">SPECIAL ATTACK</button>
                     <button id="heal" @click="heal()">HEAL</button>
-                    <button id="give-up">GIVE UP</button>
+                    <button id="give-up" @click="giveup">GIVE UP</button>
                 </div>
             </section>
             <section class="row log">
                 <div class="small-12 columns">
                     <ul>
-                        <li>
-
-                        </li>
+                        <template v-for="logItem in log">
+                            <li class="monster-turn">MONSTER HITS PLAYER FOR {{ -logItem.monster }}</li>
+                            <li class="player-turn" v-if="logItem.player < 0">PLAYER HITS MONSTER FOR {{ -logItem.player }}</li>
+                            <li class="player-turn" v-else>PLAYER HEALS HIMSELF FOR {{ logItem.player }}</li>
+                        </template>
                     </ul>
                 </div>
             </section>

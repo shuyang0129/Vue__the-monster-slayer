@@ -3,28 +3,56 @@ new Vue({
     data: {
         isStart: false,
         myHP: 50,
-        monsterHP: 0
+        monsterHP: 0,
+        log: []
     },
     methods: {
         resetGame: function() {
             this.isStart = true;
             this.myHP = 100;
-            this.monsterHP = 100
+            this.monsterHP = 100;
+            this.log = [
+                // player: give monster how much damage,
+                // monster: give player how much damage
+            ];
         },
         randomNum: function(num) {
             return Math.floor(Math.random() * num) + 1;
         },
         attack: function() {
-            this.myHP -= this.randomNum(10);
-            this.monsterHP -= this.randomNum(10);
+            damageToPlayer = this.randomNum(10);
+            damageToMonster = this.randomNum(10);
+            this.myHP -= damageToPlayer;
+            this.monsterHP -= damageToMonster;
+            this.log.push({
+                player: -damageToMonster,
+                monster: -damageToPlayer 
+            });
         },
         specialAttack: function() {
-            this.myHP -= this.randomNum(10);
-            this.monsterHP -= this.randomNum(20);
+            damageToPlayer = this.randomNum(10);
+            damageToMonster = this.randomNum(20);
+            this.myHP -= damageToPlayer;
+            this.monsterHP -= damageToMonster;
+            this.log.push({
+                player: -damageToMonster,
+                monster: -damageToPlayer 
+            });
         },
         heal: function() {
-            this.myHP += this.randomNum(10);
-            this.myHP -= this.randomNum(10);
+            damageToPlayer = this.randomNum(10);
+            playerHeal = this.randomNum(10);
+            this.myHP += playerHeal - damageToPlayer;
+            this.log.push({
+                player: playerHeal,
+                monster: -damageToPlayer 
+            });
+        },
+        giveup: function() {
+            this.isStart = false;
+            this.myHP = 100;
+            this.monsterHP = 100;
+            this.log = [];
         }
     },
     watch: {
