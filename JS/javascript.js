@@ -24,7 +24,7 @@ new Vue({
         },
         heal: function() {
             this.myHP += this.randomNum(10);
-            this.myHP += this.randomNum(10);
+            this.myHP -= this.randomNum(10);
         }
     },
     watch: {
