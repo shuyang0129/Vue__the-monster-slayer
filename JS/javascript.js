@@ -55,11 +55,11 @@ new Vue({
             this.log = [];
         },
         gameFinish: function() {
-            if (this.myHp === 0) {
+            if (this.myHP == 0) {
                 if(confirm('You lose! New Game')) {
                     this.resetGame();
                 };
-            } else if(this.monsterHP === 0) {
+            } else if(this.monsterHP == 0) {
                 if(confirm('You win! New game?')) {
                     this.resetGame();
                 };
